@@ -21,29 +21,38 @@ public class Menu {
 
 
     public static void menuPrincipal(){
-        Scanner teclado = new Scanner(System.in);
-        Boolean exit = false;
-        int opcion;
-        while (!exit){
-            System.out.println("-----------Bienvenido--------------");
-            System.out.println("SELECIONE UNA OPCION");
-            System.out.println("1 Login");
-            System.out.println("2 Registro");
-            System.out.println("3 Salir");
-            opcion=teclado.nextInt();
-            switch (opcion){
-                case 1:
-                    login();
-                    break;
-                case 2:
-                    registro();
-                    break;
-                case 3:
-                    System.out.println("Hasta luego");
-                    exit=true;
-                    break;
-            }
-        }
+       try {
+           Scanner teclado = new Scanner(System.in);
+           Boolean exit = false;
+           int opcion;
+
+           while (!exit) {
+               System.out.println("-----------Bienvenido--------------");
+               System.out.println("SELECIONE UNA OPCION");
+               System.out.println("1 Login");
+               System.out.println("2 Registro");
+               System.out.println("3 Salir");
+               opcion = teclado.nextInt();
+               if (opcion<1 || opcion>3){
+                   throw new Exception();
+               }else {
+                   switch (opcion) {
+                       case 1:
+                           login();
+                           break;
+                       case 2:
+                           registro();
+                           break;
+                       case 3:
+                           System.out.println("Hasta luego");
+                           exit = true;
+                           break;
+                   }
+               }
+           }
+       }catch (Exception e){
+           System.out.println("Opción no valida");
+       }
     }
     public static void login(){
         Scanner teclado = new Scanner(System.in);
@@ -68,49 +77,58 @@ public class Menu {
     }
 
     public static void menuSecundario(){
-        Scanner teclado = new Scanner(System.in);
-        Boolean exit = false;
-        int opcion;
-        while (!exit){
-            System.out.println("-----------Bienvenido--------------");
-            System.out.println("SELECIONE UNA OPCION");
-            System.out.println("1 Ver mis datos");
-            System.out.println("2 Ver mis posts");
-            System.out.println("3 Nuevo post");
-            System.out.println("4 Ver todos los post");
-            System.out.println("5 Ver comentarios de un post");
-            System.out.println("6 Comentar un post");
-            System.out.println("7 Modificar usuario");
-            System.out.println("8 Cerrar sesion");
-            opcion=teclado.nextInt();
-            switch (opcion){
-                case 1:
-                    verDatosUsuarioLogeado();
-                    break;
-                case 2:
-                    verPostUsuarioLogeado();
-                    break;
-                case 3:
-                    nuevoPost();
-                    break;
-                case 4:
-                    verTodosPosts();
-                    break;
-                case 5:
-                    verComentariosPost();
-                    break;
-                case 6:
-                    comentarPost();
-                    break;
-                case 7:
-                    modificarUsuario();
-                    break;
-                case 8:
-                    System.out.println("Hasta luego");
-                    exit=true;
-                    break;
-            }
-        }
+      try {
+          Scanner teclado = new Scanner(System.in);
+          Boolean exit = false;
+          int opcion;
+          while (!exit) {
+              System.out.println("-----------Bienvenido--------------");
+              System.out.println("SELECIONE UNA OPCION");
+              System.out.println("1 Ver mis datos");
+              System.out.println("2 Ver mis posts");
+              System.out.println("3 Nuevo post");
+              System.out.println("4 Ver todos los post");
+              System.out.println("5 Ver comentarios de un post");
+              System.out.println("6 Comentar un post");
+              System.out.println("7 Modificar usuario");
+              System.out.println("8 Cerrar sesion");
+              opcion = teclado.nextInt();
+              if (opcion<1 || opcion>8){
+                  throw new Exception();
+              }else {
+                  switch (opcion) {
+                      case 1:
+                          verDatosUsuarioLogeado();
+                          break;
+                      case 2:
+                          verPostUsuarioLogeado();
+                          break;
+                      case 3:
+                          nuevoPost();
+                          break;
+                      case 4:
+                          verTodosPosts();
+                          break;
+                      case 5:
+                          verComentariosPost();
+                          break;
+                      case 6:
+                          comentarPost();
+                          break;
+                      case 7:
+                          modificarUsuario();
+                          break;
+                      case 8:
+                          System.out.println("Hasta luego");
+                          exit = true;
+                          break;
+                  }
+              }
+          }
+      }catch (Exception e){
+          System.out.println("Opcion no valida");
+          System.out.println("Cerrando sesion por su seguridad");
+      }
     }
     public static void registro(){
         Scanner teclado = new Scanner(System.in);
