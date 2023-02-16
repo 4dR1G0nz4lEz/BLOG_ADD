@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Menu {
 
+
     @PersistenceUnit(name = "persistencia")
 //    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
@@ -21,6 +22,7 @@ public class Menu {
 
 
     public static void menuPrincipal(){
+        //METODO PRINCIPAL QUE LLAMA A LOS OTROS METODOS MEDIANTE LA AYUDA DE UN SWITCH
        try {
            Scanner teclado = new Scanner(System.in);
            Boolean exit = false;
@@ -55,6 +57,8 @@ public class Menu {
        }
     }
     public static void login(){
+        //METODO CON EL QUE NOS VAMOS A LOGEAR
+
         Scanner teclado = new Scanner(System.in);
         System.out.println("Email:  ");
         String email=teclado.nextLine();
@@ -77,6 +81,7 @@ public class Menu {
     }
 
     public static void menuSecundario(){
+        //METODO SECUNDARIO DE MENU QUE LLAMA A LOS OTROS METODOS MEDIANTE LA AYUDA DE UN SWITCH
       try {
           Scanner teclado = new Scanner(System.in);
           Boolean exit = false;
@@ -131,6 +136,8 @@ public class Menu {
       }
     }
     public static void registro(){
+        //METODO DE REGISTRO DE USUARIOS EN LA BBDD
+
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduce nombre: ");
         String nombre =teclado.nextLine();
@@ -168,6 +175,7 @@ public class Menu {
     }
 
     public static int comprobarUsuario(String email){
+        //METODO AUXILIAR PARA COMPROBAR QUE YA EXISTE UN USUARIO A LA HORA DE HACER EL REGISTRO
         Query query= manager.createQuery("FROM Usuarios WHERE email = :email");
         query.setParameter("email",email);
         users=query.getResultList();
@@ -176,6 +184,7 @@ public class Menu {
 
 
     public static void verDatosUsuarioLogeado(){
+        //METODO PARA VER LOS DATOS DEL USUARIO LOGEADO
 
             for (Usuarios u : users) {
                 System.out.println("-----------------------------------");
@@ -189,6 +198,7 @@ public class Menu {
     }
 
     public static void verPostUsuarioLogeado(){
+        //METODO QUE NOS MUESTRA TODOS LOS POSTS DEL USUARIO QUE ESTÁ LOGEADO
         try {
             posts = users.get(0).getPosts();
             for (Posts p : posts) {
@@ -204,6 +214,7 @@ public class Menu {
     }
 
     public static void nuevoPost(){
+        //METODO PARA CREAR POSTS
      try {
 
          Scanner teclado = new Scanner(System.in);
@@ -231,7 +242,7 @@ public class Menu {
     }
 
     public static void verTodosPosts(){
-
+    //METODO PARA VER TODOS LOS POSTS EXISTENTES
         String hql = "FROM Posts";
         Query query = manager.createQuery(hql);
         posts=query.getResultList();
@@ -252,6 +263,7 @@ public class Menu {
     }
 
     public static void verComentariosPost (){
+        //METODO PARA VER LOS COMENTARIOS DE UN POST
         try {
             Scanner teclado = new Scanner(System.in);
 
@@ -285,6 +297,7 @@ public class Menu {
     }
 
     public static void comentarPost(){
+        //METODO QUE NOS PERMITE COMENTAR EL POST
         try {
             Scanner teclado = new Scanner(System.in);
 
@@ -318,7 +331,7 @@ public class Menu {
     }
 
     public static void modificarUsuario(){
-
+    //METODO PARA MODIFICAR UN USUARIO YA LOGEADO
        try {
            Scanner teclado = new Scanner(System.in);
            Boolean exit = false;
@@ -383,6 +396,7 @@ public class Menu {
     }
 
     public static void cerrarSesion(){
+        //METODO PARA CERRAR SESION
         users=null;
         coments=null;
         posts=null;
